@@ -3,7 +3,9 @@
 // The list of file replacements can be found in `angular.json`.
 
 export const environment = {
-  production: false
+  production: false,
+  apiEndPoint: 'https://api.novaposhta.ua/v2.0/json/',
+  apiKey: '202833fb51afea7c08aa893c6bacbcff'
 };
 
 /*
