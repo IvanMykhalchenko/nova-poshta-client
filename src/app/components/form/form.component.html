@@ -1,16 +1,131 @@
 <form [formGroup]="form" (ngSubmit)="onSubmit()">
 	<div class="ui-fluid">
-		<div class="m-top-15">
-			<p-dropdown [options]="areas | async" formControlName="area" [filter]="true" (onChange)="getCities($event.value)"></p-dropdown>
-		</div>
 
-		<div class="m-top-15">
-			<p-dropdown [options]="cities | async" formControlName="city" [filter]="true" [disabled]="isDisableCities" (onChange)="getDepartments($event.value)"></p-dropdown>
-		</div>
+		<div class="p-grid">
+			<div class="p-col">
+				<h3>Дані відправника</h3>
+				<div class="m-bottom-15">
+					<label>ПІБ відправника</label>
+					<input type="text" pInputText formControlName="Sender"/>
+				</div>
 
-		<div class="m-top-15">
-			<p-dropdown [options]="departments | async" formControlName="department" [filter]="true" [disabled]="isDisableDepartments"></p-dropdown>
+				<div class="m-bottom-15">
+					<label>ПІБ контактоної особи відправника</label>
+					<input type="text" pInputText formControlName="ContactSender"/>
+				</div>
+
+				<div class="m-bottom-15">
+					<label>Телефон відправника</label>
+					<p-inputMask [formControlName]="'SendersPhone'" mask="+999999999999"></p-inputMask>
+				</div>
+
+				<div class="m-bottom-15">
+					<label>Виберіть область</label>
+					<p-dropdown [autoDisplayFirst]="false" [options]="areasSender" formControlName="area" [filter]="true" (onChange)="getCities($event.value, 'sender')"></p-dropdown>
+				</div>
+		
+				<div class="m-bottom-15">
+					<label>Виберіть населений пункт</label>
+					<p-dropdown [autoDisplayFirst]="false" [options]="citiesSender" formControlName="CitySender" [filter]="true" (onChange)="getDepartments($event.value, 'sender')"></p-dropdown>
+				</div>
+		
+				<div class="m-bottom-15">
+					<label>Виберіть відділення</label>
+					<p-dropdown [autoDisplayFirst]="false" [options]="departmentsSender" formControlName="SenderAddress" [filter]="true"></p-dropdown>
+				</div>
+			</div>
+
+			<div class="p-col">
+				<h3>Дані отримувача</h3>
+				<div class="m-bottom-15">
+					<label>ПІБ отримувача</label>
+					<input type="text" pInputText formControlName="Recipient"/>
+				</div>
+
+				<div class="m-bottom-15">
+					<label>ПІБ контактоної особи отримувача</label>
+					<input type="text" pInputText formControlName="ContactRecipient"/>
+				</div>
+
+				<div class="m-bottom-15">
+					<label>Телефон отримувача</label>
+					<p-inputMask [formControlName]="'RecipientsPhone'" mask="+999999999999"></p-inputMask>
+				</div>
+
+				<div class="m-bottom-15">
+					<label>Виберіть область</label>
+					<p-dropdown [autoDisplayFirst]="false" [options]="areasRecipient" formControlName="area" [filter]="true" (onChange)="getCities($event.value, 'recipient')"></p-dropdown>
+				</div>
+		
+				<div class="m-bottom-15">
+					<label>Виберіть населений пункт</label>
+					<p-dropdown [autoDisplayFirst]="false" [options]="citiesRecipient" formControlName="CityRecipient" [filter]="true" (onChange)="getDepartments($event.value, 'recipient')"></p-dropdown>
+				</div>
+		
+				<div class="m-bottom-15">
+					<label>Виберіть відділення</label>
+					<p-dropdown [autoDisplayFirst]="false" [options]="departmentsRecipient" formControlName="RecipientAddress" [filter]="true"></p-dropdown>
+				</div>
+			</div>
+
+			<div class="p-col">
+				<h3>Загальні дані</h3>
+				
+				<div class="m-bottom-15">
+					<label>Виберіть тип оплати</label>
+					<p-dropdown [autoDisplayFirst]="false" [options]="payersTypes | async" formControlName="PayerType" [filter]="true"></p-dropdown>
+				</div>
+
+				<div class="m-bottom-15">
+					<label>Виберіть метод оплати</label>
+					<p-dropdown [autoDisplayFirst]="false" [options]="paymentType | async" formControlName="PaymentMethod" [filter]="true"></p-dropdown>
+				</div>
+
+				<div class="m-bottom-15">
+					<label>Виберіть тип посилки</label>
+					<p-dropdown [autoDisplayFirst]="false" [options]="cargoTypes | async" formControlName="CargoType" [filter]="true"></p-dropdown>
+				</div>
+
+				<div class="m-bottom-15">
+					<label>Виберіть тип доставки</label>
+					<p-dropdown [autoDisplayFirst]="false" [options]="serviceTypes | async" formControlName="CargoType" [filter]="true"></p-dropdown>
+				</div>
+
+				<div class="p-grid">
+					<div class="p-col">
+						<div class="m-bottom-15">
+							<label>Вага посилки</label>
+							<p-inputNumber [formControlName]="'Weight'" mode="decimal" [minFractionDigits]="1"></p-inputNumber>
+						</div>
+		
+					</div>
+
+					<div class="p-col">
+						<div class="m-bottom-15">
+							<label>Кількість місць</label>
+							<p-inputNumber [formControlName]="'SeatsAmount'"></p-inputNumber>
+						</div>
+					</div>
+					
+					<div class="p-col">
+						<div class="m-bottom-15">
+							<label>Вартість</label>
+							<p-inputNumber [formControlName]="'Cost'"></p-inputNumber>
+						</div>
+					</div>
+				</div>
+
+				<div class="m-bottom-15">
+					<label>Виберіть дату</label>
+					<p-calendar [formControlName]="'DateTime'" [touchUI]="true" [readonlyInput]="true" dateFormat="dd.mm.yy"></p-calendar>
+				</div>
+
+				<div class="m-bottom-15">
+					<label>Опис</label>
+					<textarea pInputTextarea [formControlName]="'Description'" [autoResize]="true"></textarea>
+				</div>
+			</div>
 		</div>
-		<p-button class="m-top-15" label="Відправити заявку"></p-button>
+		<p-button class="m-bottom-15" label="Відправити заявку"></p-button>
 	</div>
 </form>
