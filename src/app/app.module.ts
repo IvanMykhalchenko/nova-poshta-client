@@ -9,7 +9,7 @@ import { DropdownModule } from 'primeng/dropdown';
 import { HeaderComponent } from './components/header/header.component';
 import { FormComponent } from './components/form/form.component';
 import { FormsModule } from '@angular/forms';
-import { DialogModule } from 'primeng/dialog';
+import {ButtonModule} from 'primeng/button';
 
 @NgModule({
   declarations: [
@@ -24,7 +24,8 @@ import { DialogModule } from 'primeng/dialog';
     DropdownModule,
     FormsModule,
     ReactiveFormsModule,
-    HttpClientModule
+    HttpClientModule,
+    ButtonModule
   ],
   providers: [],
   bootstrap: [AppComponent]

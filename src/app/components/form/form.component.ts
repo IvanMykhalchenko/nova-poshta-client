@@ -10,8 +10,12 @@ import { RequestsApiService } from '../../services/requests-api.service'
   styleUrls: ['./form.component.scss']
 })
 export class FormComponent implements OnInit {
-  form: FormGroup;
-  areas: Observable<SelectItem> = this.api.getAreas();
+  public form: FormGroup;
+  public areas: Observable<SelectItem> = this.api.getAreas();
+  public cities: Observable<SelectItem>;
+  public departments: Observable<SelectItem>
+  public isDisableCities: boolean = true;
+  public isDisableDepartments: boolean = true;
 
   constructor(
     private fb: FormBuilder,
@@ -28,6 +32,21 @@ export class FormComponent implements OnInit {
       city: ['', Validators.required],
       department: ['', Validators.required]
     })
+  }
+
+  public getCities(ref: string) {
+    this.cities = this.api.getCities(ref);
+    this.isDisableCities = false;
+  }
+
+  
+  public getDepartments(ref: string) {
+    this.departments = this.api.getDepartments(ref);
+    this.isDisableDepartments = false;
+  }
+
+  public onSubmit() {
+
   }
 
 }
