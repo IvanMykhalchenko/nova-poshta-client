@@ -10,7 +10,7 @@
 				</div>
 
 				<div class="m-bottom-15">
-					<label>ПІБ контактоної особи відправника</label>
+					<label>ПІБ контактної особи відправника</label>
 					<input type="text" pInputText formControlName="ContactSender"/>
 				</div>
 
@@ -21,7 +21,7 @@
 
 				<div class="m-bottom-15">
 					<label>Виберіть область</label>
-					<p-dropdown [autoDisplayFirst]="false" [options]="areasSender" formControlName="area" [filter]="true" (onChange)="getCities($event.value, 'sender')"></p-dropdown>
+					<p-dropdown [autoDisplayFirst]="false" [options]="areasSender" [filter]="true" (onChange)="getCities($event.value, 'sender')"></p-dropdown>
 				</div>
 		
 				<div class="m-bottom-15">
@@ -43,7 +43,7 @@
 				</div>
 
 				<div class="m-bottom-15">
-					<label>ПІБ контактоної особи отримувача</label>
+					<label>ПІБ контактної особи отримувача</label>
 					<input type="text" pInputText formControlName="ContactRecipient"/>
 				</div>
 
@@ -54,7 +54,7 @@
 
 				<div class="m-bottom-15">
 					<label>Виберіть область</label>
-					<p-dropdown [autoDisplayFirst]="false" [options]="areasRecipient" formControlName="area" [filter]="true" (onChange)="getCities($event.value, 'recipient')"></p-dropdown>
+					<p-dropdown [autoDisplayFirst]="false" [options]="areasRecipient" [filter]="true" (onChange)="getCities($event.value, 'recipient')"></p-dropdown>
 				</div>
 		
 				<div class="m-bottom-15">
@@ -88,7 +88,7 @@
 
 				<div class="m-bottom-15">
 					<label>Виберіть тип доставки</label>
-					<p-dropdown [autoDisplayFirst]="false" [options]="serviceTypes | async" formControlName="CargoType" [filter]="true"></p-dropdown>
+					<p-dropdown [autoDisplayFirst]="false" [options]="serviceTypes | async" formControlName="ServiceType" [filter]="true"></p-dropdown>
 				</div>
 
 				<div class="p-grid">
@@ -126,6 +126,6 @@
 				</div>
 			</div>
 		</div>
-		<p-button class="m-bottom-15" label="Відправити заявку"></p-button>
+		<p-button class="m-bottom-15" label="Відправити заявку" [disabled]="form.invalid"></p-button>
 	</div>
 </form>
