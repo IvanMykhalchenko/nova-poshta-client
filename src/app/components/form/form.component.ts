@@ -2,7 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { Observable } from 'rxjs';
 import { SelectItem } from 'primeng/api';
-import { RequestsApiService } from '../../services/requests-api.service'
+import { RequestsApiService } from '../../services/requests-api.service';
+import * as moment from 'moment';
 
 type UserType = 'sender' | 'recipient';
 
@@ -37,7 +38,6 @@ export class FormComponent implements OnInit {
 
   private createForm() {
     this.form = this.fb.group({
-      area: ['', Validators.required],
       CitySender: ['', Validators.required],
       CityRecipient: ['', Validators.required],
       SenderAddress: ['', Validators.required],
@@ -69,7 +69,6 @@ export class FormComponent implements OnInit {
         }))
         this.areasSender = this.areasSender.slice(1);
         this.areasRecipient = [...this.areasSender];
-        this.getCities(this.areasSender[0].value)
       }
     )
   }
@@ -82,7 +81,6 @@ export class FormComponent implements OnInit {
           value: city.Ref
         }))
         type == 'sender' ? this.citiesSender = arr : this.citiesRecipient = arr;
-        this.getDepartments(arr[0].value, type)
       }
     )
   }
@@ -99,11 +97,11 @@ export class FormComponent implements OnInit {
     )
   }
 
-  public 
-
   public onSubmit() {
-    console.log(this.form.value)
-    console.log(this.dateTime)
+    this.api.saveRequest({
+      ...this.form.value,
+      'DateTime': moment(this.form.value['DateTime']).format('dd.mm.yyyy')
+    }).subscribe(res => {})
   }
 
 }
