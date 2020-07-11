@@ -4,6 +4,8 @@ import { Observable } from 'rxjs';
 import { SelectItem } from 'primeng/api';
 import { RequestsApiService } from '../../services/requests-api.service'
 
+type UserType = 'sender' | 'recipient';
+
 @Component({
   selector: 'app-form',
   templateUrl: './form.component.html',
@@ -11,11 +13,17 @@ import { RequestsApiService } from '../../services/requests-api.service'
 })
 export class FormComponent implements OnInit {
   public form: FormGroup;
-  public areas: Observable<SelectItem> = this.api.getAreas();
-  public cities: Observable<SelectItem>;
-  public departments: Observable<SelectItem>
-  public isDisableCities: boolean = true;
-  public isDisableDepartments: boolean = true;
+  public areasSender: SelectItem[];
+  public areasRecipient: SelectItem[];
+  public citiesSender: SelectItem[];
+  public citiesRecipient: SelectItem[];
+  public departmentsSender: SelectItem[];
+  public departmentsRecipient: SelectItem[];
+  public payersTypes: Observable<SelectItem[]> = this.api.getPayersType();
+  public paymentType: Observable<SelectItem[]> = this.api.getPaymentTypes();
+  public cargoTypes: Observable<SelectItem[]> = this.api.getCargoTypes();
+  public serviceTypes: Observable<SelectItem[]> = this.api.getServiceTypes();
+  public dateTime: string;
 
   constructor(
     private fb: FormBuilder,
@@ -23,30 +31,79 @@ export class FormComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
+    this.getAreas();
     this.createForm();
   }
 
   private createForm() {
     this.form = this.fb.group({
       area: ['', Validators.required],
-      city: ['', Validators.required],
-      department: ['', Validators.required]
+      CitySender: ['', Validators.required],
+      CityRecipient: ['', Validators.required],
+      SenderAddress: ['', Validators.required],
+      RecipientAddress: ['', Validators.required],
+      PayerType: ['', Validators.required],
+      PaymentMethod: ['', Validators.required],
+      DateTime: ['', Validators.required],
+      CargoType: ['', Validators.required],
+      Weight: ['', Validators.required],
+      ServiceType: ['', Validators.required],
+      SeatsAmount: ['', Validators.required],
+      Description: ['', Validators.required],
+      Cost: ['', Validators.required],
+      Sender: ['', Validators.required],
+      ContactSender: ['', Validators.required],
+      SendersPhone: ['', Validators.required],
+      Recipient: ['', Validators.required],
+      ContactRecipient: ['', Validators.required],
+      RecipientsPhone: ['', Validators.required],
     })
   }
 
-  public getCities(ref: string) {
-    this.cities = this.api.getCities(ref);
-    this.isDisableCities = false;
+  public getAreas() {
+    this.api.getAreas().subscribe(
+      (response: any) => {
+        this.areasSender = response.data.map(area => ({
+          label: area.Description,
+          value: area.Ref
+        }))
+        this.areasSender = this.areasSender.slice(1);
+        this.areasRecipient = [...this.areasSender];
+        this.getCities(this.areasSender[0].value)
+      }
+    )
   }
 
-  
-  public getDepartments(ref: string) {
-    this.departments = this.api.getDepartments(ref);
-    this.isDisableDepartments = false;
+  public getCities(ref: string, type?: UserType) {
+    this.api.getCities(ref).subscribe(
+      (response: any) => {
+        const arr = response.data.map(city => ({
+          label: city.Description,
+          value: city.Ref
+        }))
+        type == 'sender' ? this.citiesSender = arr : this.citiesRecipient = arr;
+        this.getDepartments(arr[0].value, type)
+      }
+    )
   }
+  
+  public getDepartments(ref: string, type?: UserType) {
+    this.api.getDepartments(ref).subscribe(
+      (response: any) => {
+        const arr = response.data.map(department => ({
+          label: department.Description,
+          value: department.Ref
+        }));
+        type == 'sender' ? this.departmentsSender = arr : this.departmentsRecipient = arr;
+      }
+    )
+  }
+
+  public 
 
   public onSubmit() {
-
+    console.log(this.form.value)
+    console.log(this.dateTime)
   }
 
 }

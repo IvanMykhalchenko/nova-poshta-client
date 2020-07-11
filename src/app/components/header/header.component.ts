@@ -6,7 +6,7 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./header.component.scss']
 })
 export class HeaderComponent implements OnInit {
-  public headerTitle: string = 'Створіть посилку тут'
+  public headerTitle: string = 'Створіть заявку на відправку посилки тут'
 
   constructor() { }
 

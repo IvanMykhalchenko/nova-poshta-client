@@ -9,7 +9,12 @@ import { DropdownModule } from 'primeng/dropdown';
 import { HeaderComponent } from './components/header/header.component';
 import { FormComponent } from './components/form/form.component';
 import { FormsModule } from '@angular/forms';
-import {ButtonModule} from 'primeng/button';
+import { ButtonModule } from 'primeng/button';
+import { CalendarModule } from 'primeng/calendar';
+import { InputNumberModule } from 'primeng/inputnumber';
+import { InputTextareaModule } from 'primeng/inputtextarea';
+import { InputTextModule } from 'primeng/inputtext';
+import { InputMaskModule } from 'primeng/inputmask';
 
 @NgModule({
   declarations: [
@@ -25,7 +30,12 @@ import {ButtonModule} from 'primeng/button';
     FormsModule,
     ReactiveFormsModule,
     HttpClientModule,
-    ButtonModule
+    ButtonModule,
+    CalendarModule,
+    InputNumberModule,
+    InputTextareaModule,
+    InputTextModule,
+    InputMaskModule
   ],
   providers: [],
   bootstrap: [AppComponent]
