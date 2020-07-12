@@ -4,6 +4,7 @@ import { Observable } from 'rxjs';
 import { SelectItem } from 'primeng/api';
 import { RequestsApiService } from '../../services/requests-api.service';
 import * as moment from 'moment';
+import { FormService } from '../../services/form.service';
 
 type UserType = 'sender' | 'recipient';
 
@@ -32,37 +33,13 @@ export class FormComponent implements OnInit {
 
 
   constructor(
-    private fb: FormBuilder,
+    private formService: FormService,
     private api: RequestsApiService
   ) { }
 
   ngOnInit(): void {
     this.getAreas();
-    this.createForm();
-  }
-
-  private createForm() {
-    this.form = this.fb.group({
-      CitySender: ['', Validators.required],
-      CityRecipient: ['', Validators.required],
-      SenderAddress: ['', Validators.required],
-      RecipientAddress: ['', Validators.required],
-      PayerType: ['', Validators.required],
-      PaymentMethod: ['', Validators.required],
-      DateTime: ['', Validators.required],
-      CargoType: ['', Validators.required],
-      Weight: ['', Validators.required],
-      ServiceType: ['', Validators.required],
-      SeatsAmount: ['', Validators.required],
-      Description: ['', Validators.required],
-      Cost: ['', Validators.required],
-      Sender: ['', Validators.required],
-      ContactSender: ['', Validators.required],
-      SendersPhone: ['', Validators.required],
-      Recipient: ['', Validators.required],
-      ContactRecipient: ['', Validators.required],
-      RecipientsPhone: ['', Validators.required],
-    })
+    this.form = this.formService.createForm();
   }
 
   public getAreas() {
@@ -107,7 +84,7 @@ export class FormComponent implements OnInit {
   public onSubmit() {
     this.api.saveRequest({
       ...this.form.value,
-      'DateTime': moment(this.form.value['DateTime']).format('dd.mm.yyyy')
+      'DateTime': moment(this.form.value['DateTime']).format('DD.MM.YYYY')
     }).subscribe(res => {})
   }
 
