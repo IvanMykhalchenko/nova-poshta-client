@@ -15,6 +15,8 @@ import { InputNumberModule } from 'primeng/inputnumber';
 import { InputTextareaModule } from 'primeng/inputtextarea';
 import { InputTextModule } from 'primeng/inputtext';
 import { InputMaskModule } from 'primeng/inputmask';
+import { TabViewModule } from 'primeng/tabview';
+import { ToolbarModule } from 'primeng/toolbar';
 
 @NgModule({
   declarations: [
@@ -35,7 +37,9 @@ import { InputMaskModule } from 'primeng/inputmask';
     InputNumberModule,
     InputTextareaModule,
     InputTextModule,
-    InputMaskModule
+    InputMaskModule,
+    TabViewModule,
+    ToolbarModule
   ],
   providers: [],
   bootstrap: [AppComponent]

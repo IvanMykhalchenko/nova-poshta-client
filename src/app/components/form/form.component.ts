@@ -25,6 +25,11 @@ export class FormComponent implements OnInit {
   public cargoTypes: Observable<SelectItem[]> = this.api.getCargoTypes();
   public serviceTypes: Observable<SelectItem[]> = this.api.getServiceTypes();
   public dateTime: string;
+  public isDisableSenderDropdownCity: boolean = true;
+  public isDisableSenderDropdownDepartment: boolean = true;
+  public isDisableRecipientDropdownCity: boolean = true;
+  public isDisableRecipientDropdownDepartment: boolean = true;
+
 
   constructor(
     private fb: FormBuilder,
@@ -81,6 +86,7 @@ export class FormComponent implements OnInit {
           value: city.Ref
         }))
         type == 'sender' ? this.citiesSender = arr : this.citiesRecipient = arr;
+        type == 'sender' ? this.isDisableSenderDropdownCity = false : this.isDisableRecipientDropdownCity = false;
       }
     )
   }
@@ -93,6 +99,7 @@ export class FormComponent implements OnInit {
           value: department.Ref
         }));
         type == 'sender' ? this.departmentsSender = arr : this.departmentsRecipient = arr;
+        type == 'sender' ? this.isDisableSenderDropdownDepartment = false : this.isDisableRecipientDropdownDepartment = false;
       }
     )
   }
