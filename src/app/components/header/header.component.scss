@@ -8,3 +8,13 @@
 		text-transform: uppercase;
 	}
 }
+
+@media screen and (max-width: 768px) {
+	.header {
+		flex-direction: column;
+
+		&__title {
+			font-size: 15px;
+		}
+	}
+}
