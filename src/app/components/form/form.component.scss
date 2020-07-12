@@ -1,8 +1,5 @@
 form {
 	padding: 10px;
-	border-radius: 10px;
-	border: 1px solid rgba(218,41,28, .5);
-
 	label {
 		font-size: 12px;
 		font-style: italic;
@@ -13,12 +10,29 @@ form {
 		padding: 0 5px;
 	}
 
-	h3 {
-		text-align: center;
-		font-weight: 400;
+	textarea {
+		min-height: 50px;
 	}
 
-	textarea {
-		height: 50px;
+	.wrapper {
+		padding: 0 16px;
 	}
+
+	::ng-deep {
+		.ui-tabview-selected {
+			background-color: rgb(218,41,28) !important;
+		}
+
+		p-toolbar {
+			margin-left: 40px;
+
+			.ui-toolbar {
+				background-color: rgba(218,41,28, .8) !important;	
+				font-weight: bold;
+				color: #ffffff;
+			}
+		}
+
+	}
+
 }
