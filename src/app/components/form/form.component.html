@@ -26,12 +26,27 @@
 			
 					<div class="m-bottom-15">
 						<label>Виберіть населений пункт</label>
-						<p-dropdown [disabled]="isDisableSenderDropdownCity" [autoDisplayFirst]="false" [options]="citiesSender" formControlName="CitySender" [filter]="true" (onChange)="getDepartments($event.value, 'sender')"></p-dropdown>
+						<p-dropdown
+						 	[disabled]="isDisableSenderDropdownCity"
+						  	[autoDisplayFirst]="false"
+						   	[options]="citiesSender"
+							formControlName="CitySender"
+							[filter]="true"
+							(onChange)="getDepartments($event.value, 'sender')"
+							>
+							</p-dropdown>
 					</div>
 			
 					<div class="m-bottom-15">
 						<label>Виберіть відділення</label>
-						<p-dropdown [disabled]="isDisableSenderDropdownDepartment" [autoDisplayFirst]="false" [options]="departmentsSender" formControlName="SenderAddress" [filter]="true"></p-dropdown>
+						<p-dropdown
+						 	[disabled]="isDisableSenderDropdownDepartment"
+						  	[autoDisplayFirst]="false"
+						   	[options]="departmentsSender"
+							formControlName="SenderAddress"
+							[filter]="true"
+							>
+							</p-dropdown>
 					</div>
 				</div>
 			</p-tabPanel>
@@ -54,12 +69,26 @@
 	
 					<div class="m-bottom-15">
 						<label>Виберіть область</label>
-						<p-dropdown [autoDisplayFirst]="false" [options]="areasRecipient" [filter]="true" (onChange)="getCities($event.value, 'recipient')"></p-dropdown>
+						<p-dropdown
+						 	[autoDisplayFirst]="false"
+							[options]="areasRecipient"
+						   	[filter]="true"
+						   	(onChange)="getCities($event.value, 'recipient')"
+						   >
+						</p-dropdown>
 					</div>
 			
 					<div class="m-bottom-15">
 						<label>Виберіть населений пункт</label>
-						<p-dropdown [disabled]="isDisableRecipientDropdownCity" [autoDisplayFirst]="false" [options]="citiesRecipient" formControlName="CityRecipient" [filter]="true" (onChange)="getDepartments($event.value, 'recipient')"></p-dropdown>
+						<p-dropdown
+						 	[disabled]="isDisableRecipientDropdownCity"
+						  	[autoDisplayFirst]="false"
+						   	[options]="citiesRecipient"
+							formControlName="CityRecipient"
+							[filter]="true"
+							(onChange)="getDepartments($event.value, 'recipient')"
+							>
+						</p-dropdown>
 					</div>
 			
 					<div class="m-bottom-15">
