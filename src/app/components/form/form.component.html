@@ -8,28 +8,28 @@
 						<label>ПІБ відправника</label>
 						<input type="text" pInputText formControlName="Sender"/>
 					</div>
-	
+
 					<div class="m-bottom-15">
 						<label>ПІБ контактної особи відправника</label>
 						<input type="text" pInputText formControlName="ContactSender"/>
 					</div>
-	
+
 					<div class="m-bottom-15">
 						<label>Телефон відправника</label>
 						<p-inputMask [formControlName]="'SendersPhone'" mask="+380999999999"></p-inputMask>
 					</div>
-	
+
 					<div class="m-bottom-15">
 						<label>Виберіть область</label>
 						<p-dropdown [autoDisplayFirst]="false" [options]="areasSender" [filter]="true" (onChange)="getCities($event.value, 'sender')"></p-dropdown>
 					</div>
-			
+
 					<div class="m-bottom-15">
 						<label>Виберіть населений пункт</label>
 						<p-dropdown
 						 	[disabled]="isDisableSenderDropdownCity"
-						  	[autoDisplayFirst]="false"
-						   	[options]="citiesSender"
+						  [autoDisplayFirst]="false"
+						  [options]="citiesSender"
 							formControlName="CitySender"
 							[filter]="true"
 							(onChange)="getDepartments($event.value, 'sender')"
@@ -37,13 +37,13 @@
 							>
 						</p-dropdown>
 					</div>
-			
+
 					<div class="m-bottom-15">
 						<label>Виберіть відділення</label>
 						<p-dropdown
 						 	[disabled]="isDisableSenderDropdownDepartment"
-						  	[autoDisplayFirst]="false"
-						   	[options]="departmentsSender"
+						  [autoDisplayFirst]="false"
+						  [options]="departmentsSender"
 							formControlName="SenderAddress"
 							[filter]="true"
 							[attr.title]="isDisableSenderDropdownDepartment ? 'Спочатку виберіть населений пункт' : ''"
@@ -58,34 +58,34 @@
 						<label>ПІБ отримувача</label>
 						<input type="text" pInputText formControlName="Recipient"/>
 					</div>
-	
+
 					<div class="m-bottom-15">
 						<label>ПІБ контактної особи отримувача</label>
 						<input type="text" pInputText formControlName="ContactRecipient"/>
 					</div>
-	
+
 					<div class="m-bottom-15">
 						<label>Телефон отримувача</label>
 						<p-inputMask [formControlName]="'RecipientsPhone'" mask="+380999999999"></p-inputMask>
 					</div>
-	
+
 					<div class="m-bottom-15">
 						<label>Виберіть область</label>
 						<p-dropdown
 						 	[autoDisplayFirst]="false"
 							[options]="areasRecipient"
-						   	[filter]="true"
-						   	(onChange)="getCities($event.value, 'recipient')"
+						  [filter]="true"
+						  (onChange)="getCities($event.value, 'recipient')"
 						   >
 						</p-dropdown>
 					</div>
-			
+
 					<div class="m-bottom-15">
 						<label>Виберіть населений пункт</label>
 						<p-dropdown
 						 	[disabled]="isDisableRecipientDropdownCity"
-						  	[autoDisplayFirst]="false"
-						   	[options]="citiesRecipient"
+						  [autoDisplayFirst]="false"
+						  [options]="citiesRecipient"
 							formControlName="CityRecipient"
 							[filter]="true"
 							(onChange)="getDepartments($event.value, 'recipient')"
@@ -93,14 +93,14 @@
 							>
 						</p-dropdown>
 					</div>
-			
+
 					<div class="m-bottom-15">
 						<label>Виберіть відділення</label>
 						<p-dropdown
 						 	[disabled]="isDisableRecipientDropdownDepartment"
 						 	[autoDisplayFirst]="false"
-						   	[options]="departmentsRecipient"
-						   	formControlName="RecipientAddress"
+						  [options]="departmentsRecipient"
+						  formControlName="RecipientAddress"
 							[filter]="true"
 							[attr.title]="isDisableRecipientDropdownDepartment ? 'Спочатку виберіть населений пункт' : ''"
 						>
@@ -110,43 +110,43 @@
 			</p-tabPanel>
 			<p-tabPanel header="Загальні дані">
 				<div class="p-col">
-					
+
 					<div class="m-bottom-15">
 						<label>Виберіть тип оплати</label>
 						<p-dropdown [autoDisplayFirst]="false" [options]="payersTypes | async" formControlName="PayerType" [filter]="true"></p-dropdown>
 					</div>
-	
+
 					<div class="m-bottom-15">
 						<label>Виберіть метод оплати</label>
 						<p-dropdown [autoDisplayFirst]="false" [options]="paymentType | async" formControlName="PaymentMethod" [filter]="true"></p-dropdown>
 					</div>
-	
+
 					<div class="m-bottom-15">
 						<label>Виберіть тип посилки</label>
 						<p-dropdown [autoDisplayFirst]="false" [options]="cargoTypes | async" formControlName="CargoType" [filter]="true"></p-dropdown>
 					</div>
-	
+
 					<div class="m-bottom-15">
 						<label>Виберіть тип доставки</label>
 						<p-dropdown [autoDisplayFirst]="false" [options]="serviceTypes | async" formControlName="ServiceType" [filter]="true"></p-dropdown>
 					</div>
-	
+
 					<div class="p-grid">
 						<div class="p-col">
 							<div class="m-bottom-15">
 								<label>Вага посилки</label>
 								<p-inputNumber [formControlName]="'Weight'" mode="decimal" [minFractionDigits]="1"></p-inputNumber>
 							</div>
-			
+
 						</div>
-	
+
 						<div class="p-col">
 							<div class="m-bottom-15">
 								<label>Кількість місць</label>
 								<p-inputNumber [formControlName]="'SeatsAmount'"></p-inputNumber>
 							</div>
 						</div>
-						
+
 						<div class="p-col">
 							<div class="m-bottom-15">
 								<label>Вартість</label>
@@ -154,12 +154,12 @@
 							</div>
 						</div>
 					</div>
-	
+
 					<div class="m-bottom-15">
 						<label>Виберіть дату</label>
 						<p-calendar [formControlName]="'DateTime'" [touchUI]="true" [readonlyInput]="true" dateFormat="dd.mm.yy"></p-calendar>
 					</div>
-	
+
 					<div class="m-bottom-15">
 						<label>Опис</label>
 						<textarea pInputTextarea [formControlName]="'Description'" [autoResize]="true"></textarea>
@@ -167,7 +167,7 @@
 				</div>
 			</p-tabPanel>
 			<div class="p-grid wrapper">
-				<p-button class="m-bottom-15" label="Відправити заявку"></p-button>
+				<p-button class="m-bottom-15" label="Відправити заявку" [disabled]="form.invalid"></p-button>
 
 				<p-toolbar>
 					Для відправки треба заповнити всі поля
